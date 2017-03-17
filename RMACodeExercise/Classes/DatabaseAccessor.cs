@@ -17,6 +17,8 @@ namespace RMACodeExercise
         }
         public void Save(IList<ITradeRecord> trades)
         {
+            try
+            { 
             #region save to database
             using (var connection = new SqlConnection("Data Source=(local);Initial Catalog=TradeDatabase;Integrated Security=True"))
             {
@@ -43,6 +45,11 @@ namespace RMACodeExercise
             }
 
             logService.Log($"INFO: {trades.Count} trades processed");
+            }
+            catch(SqlException e)
+            {
+                logService.Log($"ERROR: sql error: " + e.ToString());
+            }
 
             #endregion
         }

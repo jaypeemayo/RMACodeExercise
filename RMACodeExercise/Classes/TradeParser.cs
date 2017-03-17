@@ -60,7 +60,7 @@ namespace RMACodeExercise
                 var destinationCurrencyCode = fields[0].Substring(3, 3);
 
                 // Calculate values
-                var trade = new TradeRecord
+                ITradeRecord trade = new TradeRecord
                 {
                     SourceCurrency = sourceCurrencyCode,
                     DestinationCurrency = destinationCurrencyCode,
