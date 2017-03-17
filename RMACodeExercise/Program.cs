@@ -18,8 +18,10 @@ namespace RMACodeExercise
             unitycontainer.RegisterType<ITradeParser, TradeParser>();
             unitycontainer.RegisterType<IDatabaseAccessor, DatabaseAccessor>();
             unitycontainer.RegisterType<ITradeProcessorFactory, TradeProcessorFactory>();
+            unitycontainer.RegisterType<ITradeProcessor, TradeProcessor>();
 
-            ITradeProcessor tradeProcessor = unitycontainer.Resolve<TradeProcessor>();
+
+            ITradeProcessor tradeProcessor = unitycontainer.Resolve<ITradeProcessor>();
 
             using (var test_Stream = new MemoryStream(Encoding.UTF8.GetBytes("PHPAUD,32,1 \nAUDPHP,1,32 \n"))) //<--dummy values for testing
             {
