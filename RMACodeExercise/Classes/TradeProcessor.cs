@@ -11,13 +11,11 @@ using System.Threading.Tasks;
 
 namespace RMACodeExercise
 {
-   
     public class TradeProcessor:ITradeProcessor
     {
         IFileReader fileReader;
         ITradeParser tradeParser;
         IDatabaseAccessor databaseAccessor;
-
 
         public TradeProcessor(ITradeProcessorFactory tradeProcessorFactory)
         {

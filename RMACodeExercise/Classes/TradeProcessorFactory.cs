@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,27 +9,24 @@ namespace RMACodeExercise
 {
     public class TradeProcessorFactory : ITradeProcessorFactory
     {
-        //TODO: unity container is injected in the constructor
-        public TradeProcessorFactory()//<--container as parameter
+        IUnityContainer unityContainer;
+        public TradeProcessorFactory(IUnityContainer unityContainer)
         {
-            //TODO: for improvement, Unity container can be used for dependency injection.
+            this.unityContainer = unityContainer;
         }
         public IFileReader GetFileReader()
         {
-            //TODO: resolve intance using unity container
-            return new FileReader();
+            return this.unityContainer.Resolve<IFileReader>();
         }
 
         public ITradeParser GetTradeParser()
         {
-            //TODO: resolve intance using unity container
-            return new TradeParser(new LoggingService());
+            return this.unityContainer.Resolve<ITradeParser>();
         }
 
         public IDatabaseAccessor GetDatabaseAccessor()
         {
-            //TODO: resolve intance using unity container
-            return new DatabaseAccessor(new LoggingService());
+            return this.unityContainer.Resolve<IDatabaseAccessor>();
         }
     }
 }
